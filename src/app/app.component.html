@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row col-sm-12">
+    <form>
+      <h1 class="pb-3 text-center">Try Your Luck Guess Fibonacci!!!</h1>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="userName"
+          [(ngModel)]="userName"
+          placeholder="Type your name...">
+      </div>
+      <button style="width:120px;" class="btn btn-primary" (click)="startGame()" [disabled]="!userName">Start Game</button>
+    </form>
+  </div>
+
+
+  <div class="row"  *ngIf="userName && gameStarted">
+    <div class="game-player">
+      <span>Hii {{userName}}</span>
+    </div>
+    <div class="game-rounds">
+      <span>Round - {{roundCounter}}</span>
+    </div>
+    <div class="game-container">
+      <span class="" *ngFor="let button of fibonacciArray">
+        <a
+          [ngStyle]="{'background-color': getRandomColor()}"
+          (click)="findRandomSeries()"
+          class="btn coloured-button"></a>
+      </span>
+    </div>
+    <div class="center show-results" *ngIf="showResult">
+      <span (click)="displayResult()">Show Result</span>
+      <div  ng-if="showTotalPoints" class="show-result">{{finalScore}}</div>
+    </div>
+  </div>
+</div>
