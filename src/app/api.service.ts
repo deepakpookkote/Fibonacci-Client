@@ -11,11 +11,11 @@ export class ApiService {
 
 
   saveScore(note) {
-    return this.http.post(`http://localhost:3030/api/score`, note);
+    return this.http.post(`https://guessfibo.herokuapp.com/api/score`, note);
   }
 
   getScore(userId) {
-    return this.http.get(`http://localhost:3030/api/score/${userId}`);
+    return this.http.get(`https://guessfibo.herokuapp.com/api/score/${userId}`);
   }
 }
 
