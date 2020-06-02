@@ -18,6 +18,8 @@ export class AppComponent {
 
   fibonacciArray = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34];
 
+  buttonArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   constructor(private apiService: ApiService) { }
 
   startGame() {
@@ -26,54 +28,19 @@ export class AppComponent {
     }, 2000);
   }
 
-  findRandomSeries() {
-    this.roundCounter = (this.roundCounter < 6) ? this.roundCounter + 1 : 0;
-    const selectedFibonacci = this.fibonacciArray[(Math.random() * this.fibonacciArray.length) | 0];
-    if (this.roundCounter === 1) {
-      if (selectedFibonacci === 1) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
-    }
-    if (this.roundCounter === 2) {
-      if (selectedFibonacci === 1) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
-    }
-    if (this.roundCounter === 3) {
-      if (selectedFibonacci === 1) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
-    }
-    if (this.roundCounter === 4) {
-      if (selectedFibonacci === 2) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
-    }
+
+  findRandomSeries(selectedButton) {
+    if (this.roundCounter > 5) return;
+    selectedButton === this.fibonacciArray[this.roundCounter] ? this.totalPoints++ : this.totalPoints--;
+
     if (this.roundCounter === 5) {
-      if (selectedFibonacci === 3) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
-    }
-    if (this.roundCounter === 6) {
-      if (selectedFibonacci === 5) {
-        this.totalPoints = this.totalPoints + 1;
-      } else {
-        this.totalPoints = this.totalPoints - 1;
-      }
       this.postResults();
       this.showResult = true;
     }
+    this.roundCounter++;
   }
+
+
 
   getRandomColor2() {
     let length = 6;

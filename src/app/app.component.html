@@ -24,11 +24,11 @@
       <span>Round - {{roundCounter}}</span>
     </div>
     <div class="game-container">
-      <span class="" *ngFor="let button of fibonacciArray">
+      <span class="" *ngFor="let button of buttonArray">
         <a
           [ngStyle]="{'background-color': getRandomColor()}"
-          (click)="findRandomSeries()"
-          class="btn coloured-button"></a>
+          (click)="findRandomSeries(button)"
+          class="btn coloured-button">{{button}}</a>
       </span>
     </div>
     <div class="center show-results" *ngIf="showResult">
